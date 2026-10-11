@@ -1,0 +1,4 @@
+# Managed by tools/indexing.py
+User-agent: *
+Allow: /
+Sitemap: https://mg-macro.vercel.app/sitemap.xml

@@ -1,0 +1,31 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "X-Frame-Options", "value": "DENY" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+      { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+      { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains" }
+    ] },
+    { "source": "/fonts/(.*)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" } ] },
+    { "source": "/img/(.*)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" } ] }
+  ],
+  "redirects": [
+    { "source": "/research-projects/research-projects", "destination": "/research", "permanent": true },
+    { "source": "/research-projects/eurozone", "destination": "/research#eurozone", "permanent": true },
+    { "source": "/research-projects/gegi-study", "destination": "/research#gegi-study", "permanent": true },
+    { "source": "/research-projects/balance-sheet-modelling", "destination": "/research#balance-sheet-modelling", "permanent": true },
+    { "source": "/research-projects/subordination", "destination": "/research#subordination", "permanent": true },
+    { "source": "/research-projects/defence-and-security-economics", "destination": "/research#defence", "permanent": true },
+    { "source": "/research-projects/macro-structures-and-dmo", "destination": "/research#macro-structures-dmo", "permanent": true },
+    { "source": "/research-projects/(.*)", "destination": "/research", "permanent": true },
+    { "source": "/publications/publications", "destination": "/publications", "permanent": true },
+    { "source": "/publications/the-state-of-capitalism", "destination": "/publications#state-of-capitalism", "permanent": true },
+    { "source": "/publications/(.*)", "destination": "/publications", "permanent": true },
+    { "source": "/talks-and-conferences/(.*)", "destination": "/publications#talks", "permanent": true },
+    { "source": "/dr-matteo-giordano", "destination": "/", "permanent": true }
+  ]
+}

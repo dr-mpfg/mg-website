@@ -1,1 +1,6 @@
 .superpowers/
+.DS_Store
+.vercel
+.env*
+.claude/settings.local.json
+_dl/

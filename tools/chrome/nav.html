@@ -1,5 +1,5 @@
 <nav class="nav" aria-label="Primary">
-  <div class="wrap nav__bar">
+  <div class="col col--wide nav__bar">
     <a class="logo" href="/" aria-label="Matteo Giordano, home">
       <svg class="logo__mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h20M12 5v17"/></svg>
       <span class="logo__text">Matteo Giordano</span>
@@ -9,10 +9,24 @@
       <span class="nav__toggle-icon" aria-hidden="true"></span>
     </button>
     <div class="nav__links" id="nav-links">
-      <a class="nav__link" href="/research">Research</a>
-      <a class="nav__link" href="/publications">Publications</a>
-      <a class="nav__link" href="/cargo-and-collateral">Cargo &amp; Collateral</a>
-      <a class="nav__link" href="/about">About</a>
+      <div class="nav__item"><a class="nav__link" href="/about">About</a></div>
+      <div class="nav__item nav__item--menu">
+        <a class="nav__link" href="/research">Research <svg class="nav__caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg></a>
+        <div class="nav__menu" aria-label="Research projects">
+          <a class="nav__menu-all" href="/research">All research</a>
+          <p class="nav__menu-group">Monetary architecture</p>
+          <a href="/research/balance-sheet-modelling">Balance-sheet modelling</a>
+          <a href="/research/eurozone">Eurozone asymmetries and fragmentation</a>
+          <a href="/research/subordination">Monetary subordination</a>
+          <a href="/research/gegi-study">Transformation of the eurozone architecture</a>
+          <p class="nav__menu-group">Macro-financial strategy</p>
+          <a href="/research/macro-structures-dmo">Macro-structure, DMOs and monetary regimes</a>
+          <p class="nav__menu-group">Defence economics</p>
+          <a href="/research/defence-economics">Modelling the defence-industrial base</a>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="/publications">Publications</a></div>
+      <div class="nav__item"><a class="nav__link" href="/cargo-and-collateral">Cargo &amp; Collateral</a></div>
       <a class="btn btn--sm nav__cta" href="/advisory">Advisory</a>
     </div>
   </div>

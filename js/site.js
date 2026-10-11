@@ -49,22 +49,38 @@
     for (var j = 0; j < els.length; j++) io.observe(els[j]);
   }
 
+  function renderLatest(items) {
+    var slot = document.getElementById('latest-note');
+    if (!slot || !items.length || !items[0].title) return;
+    var it = items[0];
+    var t = slot.querySelector('.latest__title'), m = slot.querySelector('.latest__meta');
+    if (!t) return;
+    var a = document.createElement('a'); a.textContent = it.title;
+    if (it.href && /^https:\/\//.test(it.href)) { a.setAttribute('href', it.href); a.setAttribute('rel', 'noopener'); a.setAttribute('target', '_blank'); }
+    t.textContent = ''; t.appendChild(a);
+    if (m && it.date) m.textContent = it.date + ' · Cargo & Collateral';
+  }
+
   function initWriting() {
     var list = document.getElementById('writing-list');
     var empty = document.getElementById('writing-empty');
-    if (!list || !empty || !window.fetch) return;
-    fetch('data/writing.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (items) {
+    var latest = document.getElementById('latest-note');
+    if ((!list || !empty) && !latest) return;
+    if (!window.fetch) return;
+    fetch('/data/writing.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (items) {
       if (!Array.isArray(items) || !items.length) return;
+      renderLatest(items);
+      if (!list || !empty) return;
       items.forEach(function (it) {
         if (!it || !it.title) return;
         var li = document.createElement('li'); li.className = 'writing__item';
         var d = document.createElement('span'); d.className = 'writing__date'; d.textContent = it.date || '';
-        var t = document.createElement(it.href ? 'a' : 'span'); t.className = 'writing__title'; t.textContent = it.title;
-        if (it.href) { t.setAttribute('href', it.href); t.setAttribute('rel', 'noopener'); t.setAttribute('target', '_blank'); }
+        var t = document.createElement(it.href && /^https:\/\//.test(it.href) ? 'a' : 'span'); t.className = 'writing__title'; t.textContent = it.title;
+        if (t.tagName === 'A') { t.setAttribute('href', it.href); t.setAttribute('rel', 'noopener'); t.setAttribute('target', '_blank'); }
         li.appendChild(d); li.appendChild(t); list.appendChild(li);
       });
       if (list.children.length) { list.removeAttribute('hidden'); empty.setAttribute('hidden', ''); }
-    }).catch(function () { /* keep the empty state */ });
+    }).catch(function () { /* keep the static fallback */ });
   }
 
   function init() { applyConfig(); initNav(); initReveal(); initWriting(); }

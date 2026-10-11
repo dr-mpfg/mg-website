@@ -5,8 +5,8 @@ Static site: plain HTML + CSS + a little vanilla JS. No framework, no build step
 ```
 index.html                 Home: hero, statement, bio, four lines of work, academic roots, affiliations
 advisory.html              Advisory: areas, delivered work, ways to engage
-research.html              One page, four sections, project anchors (#eurozone, #subordination, ...)
-publications.html          Published, in preparation, selected talks (#talks)
+research.html              Research hub: four themes, seven cards
+publications.html          Journal articles, books and studies, working papers, selected talks (#talks)
 research/<slug>.html      Six project pages (balance-sheet-modelling, eurozone, subordination, gegi-study, macro-structures-dmo, defence-economics)
 cargo-and-collateral.html  The newsletter: description + recent entries from data/writing.json
 about.html                 Positions, education, methods, recognition, CV links

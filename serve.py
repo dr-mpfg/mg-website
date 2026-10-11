@@ -26,8 +26,9 @@ class Handler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         full = super().translate_path(path)
         clean = path.split("?", 1)[0].split("#", 1)[0]
-        if not os.path.exists(full) and not clean.endswith("/"):
-            candidate = full + ".html"
+        if not clean.endswith("/") and not os.path.isfile(full):
+            # Clean URL: /research -> research.html, even when a research/ directory exists
+            candidate = full.rstrip("/") + ".html"
             if os.path.isfile(candidate):
                 return candidate
         return full

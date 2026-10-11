@@ -188,7 +188,7 @@ a.card:hover .card__more { color: var(--accent); }
 .prose ul { display: grid; gap: 8px; }
 .prose ul li { padding-left: 18px; position: relative; }
 .prose ul li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 8px; height: 1px; background: var(--accent); }
-.figure { margin: 24px 0; max-width: var(--text); }
+.figure { margin: 24px 0; max-width: 900px; }
 .figure img { width: 100%; height: auto; background: var(--paper-2); border: 1px solid var(--rule-strong); }
 .figure--cover { max-width: 220px; }
 .figure__caption { margin-top: 8px; font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); line-height: 1.5; }

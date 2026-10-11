@@ -80,7 +80,7 @@ One page, intro line from the vault index, then four sections with anchor ids, i
   - Monetary Subordination in the Eurozone (figure `Subordination_EMU.png`; three pillars; consequences)
   - Transformation of the Eurozone Architecture, GEGI Study (cover `GEGIStudy.png`; argument; method; SSRN link)
 
-Each project: heading, 80 to 150 words, figure(s) with caption and a link to the full-size file, output links. Related-page cross references are dropped (one page now).
+Each project: heading with its own id (`#macro-structures-dmo`, `#balance-sheet-modelling`, `#eurozone`, `#subordination`, `#gegi-study`) so old URLs and in-site links land on it, 80 to 150 words, figure(s) with caption and a link to the full-size file, output links. Related-page cross references are dropped (one page now).
 
 ### Publications `/publications`
 
@@ -189,7 +189,7 @@ Clean URLs, no trailing slash, the GS security headers (CSP `default-src 'self'`
 | `/research-projects/balance-sheet-modelling` | `/research#balance-sheet-modelling` |
 | `/research-projects/subordination` | `/research#subordination` |
 | `/research-projects/defence-security-economics` | `/research#defence` |
-| `/research-projects/macro-structures-dmo` | `/research#macro-strategy` |
+| `/research-projects/macro-structures-dmo` | `/research#macro-structures-dmo` |
 | `/publications/publications` | `/publications` |
 | `/publications/the-state-of-capitalism` | `/publications` |
 | `/talks-conferences/talk-conferences` | `/publications#talks` |

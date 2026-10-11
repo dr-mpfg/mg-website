@@ -31,7 +31,6 @@ Then http://localhost:8765 (clean URLs and the production security headers).
 - Copy lives in the HTML files. After touching the nav or footer, edit `tools/chrome/nav.html` or `footer.html` and run `python3 tools/chrome.py`. The nav partial carries the Research sub-menu: to add a project, add a link there (and a page under `research/`), then run `tools/chrome.py`.
 - Addresses and links used in several places: `js/config.js` (the HTML carries the same values as fallbacks; update both).
 - Add a newsletter entry: prepend to `data/writing.json` (`title`, `date`, `href`); keep the five most recent.
-- Add an advisory engagement: append an `<li>` under Delivered work in `advisory.html` following the comment there.
 - Before committing: `python3 tools/check.py --strict` and `python3 -m unittest discover -s tools/tests`.
 
 ## Indexing

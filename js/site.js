@@ -1,6 +1,7 @@
 /* Matteo Giordano — site.js. Nav toggle, reveal-on-scroll, config wiring, writing list. No network requests except data/writing.json. */
 (function () {
   'use strict';
+  document.documentElement.className += ' js';
   var cfg = window.MG_CONFIG || {};
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

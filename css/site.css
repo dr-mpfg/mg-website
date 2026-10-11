@@ -136,7 +136,6 @@ em, i { font-style: italic; }
 /* Cards */
 .cards { display: grid; gap: 14px; }
 @media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; gap: 16px; } }
-.cards--3 { }
 @media (min-width: 900px) { .cards--3 { grid-template-columns: 1fr 1fr 1fr; } }
 .card { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 20px; border: 1px solid var(--rule); border-radius: 3px; background: transparent; transition: border-color 200ms var(--ease), background-color 200ms var(--ease); min-height: 100%; }
 a.card:hover { border-color: var(--accent); }
@@ -246,9 +245,10 @@ a.card:hover .card__more { color: var(--accent); }
 .footer__tag { margin-top: 10px; font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
 
 /* Reveal */
-.reveal { opacity: 0; transition: opacity 300ms var(--ease); }
-.reveal.is-visible { opacity: 1; }
+/* Fade-in only when JS runs (site.js adds .js to <html>); without JS everything is visible. */
+.js .reveal { opacity: 0; transition: opacity 300ms var(--ease); }
+.js .reveal.is-visible { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transition: none; }
+  .js .reveal { opacity: 1; transition: none; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }

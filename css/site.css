@@ -20,7 +20,7 @@
 
 /* Base */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
 @media (min-width: 768px) { body { font-size: 1.125rem; } }
 main { flex: 1 0 auto; }
@@ -92,8 +92,11 @@ em, i { font-style: italic; }
 .hero .eyebrow { margin-bottom: 20px; }
 .hero__title { font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.08; letter-spacing: -0.025em; max-width: 20ch; }
 .hero__roles { margin-top: 28px; font-family: var(--sans); font-size: 0.9375rem; font-weight: 500; letter-spacing: 0.02em; color: var(--muted); max-width: 70ch; line-height: 1.7; }
-.hero__roles span { white-space: nowrap; }
 .hero__roles .sep { color: var(--accent); padding: 0 6px; }
+@media (max-width: 599px) {
+  .hero__roles > span:not(.sep) { display: block; }
+  .hero__roles .sep { display: none; }
+}
 .hero__links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 32px; font-family: var(--sans); font-size: 0.9375rem; font-weight: 500; }
 .hero__links a { color: var(--ink); border-bottom: 1px solid var(--accent-soft); padding-bottom: 2px; transition: color 200ms var(--ease), border-color 200ms var(--ease); }
 .hero__links a:hover { color: var(--accent); border-color: var(--accent); }
@@ -112,7 +115,7 @@ em, i { font-style: italic; }
 .block__body { font-size: 1.0625rem; line-height: 1.6; }
 @media (min-width: 768px) { .block__body { font-size: 1.1875rem; } }
 .block__body p { max-width: 60ch; }
-.block__body ul { display: grid; gap: 10px; }
+.block__body ul, ul.block__body { display: grid; gap: 12px; }
 .block__body li { max-width: 60ch; }
 
 /* Four lines of work */
@@ -228,7 +231,6 @@ em, i { font-style: italic; }
 .reveal { opacity: 0; transition: opacity 300ms var(--ease); }
 .reveal.is-visible { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .reveal { opacity: 1; transition: none; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }

@@ -38,6 +38,20 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         super().end_headers()
 
+    def send_error(self, code, message=None, explain=None):
+        """Serve 404.html for missing paths, as Vercel does."""
+        page = os.path.join(ROOT, "404.html")
+        if code == 404 and os.path.isfile(page):
+            body = open(page, "rb").read()
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            if self.command != "HEAD":
+                self.wfile.write(body)
+            return
+        super().send_error(code, message, explain)
+
     def log_message(self, fmt, *args):
         sys.stderr.write("%s %s\n" % (self.log_date_time_string(), fmt % args))
 

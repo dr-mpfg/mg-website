@@ -12,7 +12,7 @@
   --rule: rgba(27, 29, 34, 0.14); --rule-strong: rgba(27, 29, 34, 0.32); --accent: #1F6FB5; --accent-soft: rgba(31, 111, 181, 0.35);
   --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-  --wide: 1040px; --prose: 720px; --gutter: 20px; --nav-h: 68px; --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --wide: 1200px; --prose: 800px; --gutter: 20px; --nav-h: 68px; --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 @media (min-width: 768px) { :root { --gutter: 32px; --nav-h: 76px; } }
 
@@ -110,7 +110,7 @@ em, i { font-style: italic; }
 @media (min-width: 768px) { .hero { padding: 72px 0 64px; } }
 .hero__grid { display: grid; gap: 36px; }
 @media (min-width: 900px) { .hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; align-items: start; } }
-.hero__lede { margin-top: 22px; font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); line-height: 1.55; max-width: 56ch; }
+.hero__lede { margin-top: 22px; font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); line-height: 1.55; max-width: 62ch; }
 .glance { border-top: 2px solid var(--ink); padding-top: 14px; }
 .glance__block + .glance__block { margin-top: 22px; }
 .glance__label { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
@@ -145,7 +145,7 @@ ul.tags li { font-family: var(--sans); font-size: 0.8125rem; font-weight: 500; l
 @media (min-width: 768px) { .page-head { padding: 72px 0 40px; } }
 .page-head .eyebrow { margin-bottom: 16px; }
 .page-title { font-size: clamp(1.875rem, 3.8vw, 2.625rem); line-height: 1.08; letter-spacing: -0.03em; max-width: 24ch; }
-.lede { margin-top: 18px; font-size: clamp(1.0625rem, 1.6vw, 1.25rem); line-height: 1.5; color: var(--muted); max-width: 58ch; }
+.lede { margin-top: 18px; font-size: clamp(1.0625rem, 1.6vw, 1.25rem); line-height: 1.5; color: var(--muted); max-width: 66ch; }
 .lede--ink { color: var(--ink); }
 .page-head .actions { margin-top: 24px; }
 .meta { margin-top: 14px; font-family: var(--sans); font-size: 0.875rem; color: var(--muted); letter-spacing: 0.01em; }
@@ -183,7 +183,7 @@ a.card:hover .card__more { color: var(--accent); }
 .abstract { font-size: clamp(1.125rem, 1.7vw, 1.3125rem); line-height: 1.5; margin-bottom: 28px; }
 .prose h2 { font-family: var(--sans); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 32px 0 10px; }
 .prose h2:first-child { margin-top: 0; }
-.prose p, .prose li { max-width: 62ch; }
+.prose p, .prose li { max-width: 72ch; }
 .prose ul { display: grid; gap: 8px; }
 .prose ul li { padding-left: 18px; position: relative; }
 .prose ul li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 8px; height: 1px; background: var(--accent); }
@@ -215,7 +215,7 @@ a.card:hover .card__more { color: var(--accent); }
 .positions strong { font-weight: 600; }
 .positions .where { color: var(--muted); }
 .positions .when { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); white-space: nowrap; }
-.background { color: var(--ink); max-width: 62ch; }
+.background { color: var(--ink); max-width: 72ch; }
 .cv-links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-family: var(--sans); font-size: 0.9375rem; font-weight: 500; }
 .cv-links a { color: var(--ink); border-bottom: 1px solid var(--accent-soft); }
 .cv-links a:hover { color: var(--accent); border-color: var(--accent); }
@@ -232,7 +232,7 @@ a.card:hover .card__more { color: var(--accent); }
 .area__title { font-size: 1.0625rem; margin-bottom: 6px; }
 .area__text { font-size: 0.9375rem; line-height: 1.5; }
 .engage { display: grid; gap: 8px; }
-.engage li, .delivered li { max-width: 62ch; }
+.engage li, .delivered li { max-width: 72ch; }
 .engage strong, .delivered strong { font-weight: 600; }
 .delivered { display: grid; gap: 12px; }
 .note { margin-top: 24px; font-family: var(--sans); font-size: 0.875rem; color: var(--muted); max-width: 70ch; }

@@ -23,6 +23,18 @@ def site(d, sitemap=True):
         write(os.path.join(d, 'sitemap.xml'), '<urlset><url><loc>https://x/a</loc></url><url><loc>https://x/b</loc></url></urlset>')
 
 class CheckTest(unittest.TestCase):
+    def test_research_subpages_are_scanned_and_expected_in_sitemap(self):
+        with tempfile.TemporaryDirectory() as d:
+            site(d)
+            os.makedirs(os.path.join(d, 'research'))
+            write(os.path.join(d, 'research', 'eurozone.html'), GOOD.replace('/b#sec', '/a#here').replace('https://x/a', 'https://x/research/eurozone'))
+            p = '\n'.join(check.problems(d))
+            self.assertIn('sitemap.xml: missing page /research/eurozone', p)
+            write(os.path.join(d, 'sitemap.xml'), '<urlset><url><loc>https://x/a</loc></url><url><loc>https://x/b</loc></url><url><loc>https://x/research/eurozone</loc></url></urlset>')
+            self.assertEqual(check.problems(d), [])
+            write(os.path.join(d, 'research', 'bad.html'), '<html><head></head><body><a href="/nope">x</a></body></html>')
+            self.assertIn('research/bad.html: broken link /nope', '\n'.join(check.problems(d)))
+
     def test_clean_site_has_no_problems(self):
         with tempfile.TemporaryDirectory() as d:
             site(d)

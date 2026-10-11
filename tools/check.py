@@ -44,10 +44,10 @@ def page_for(root, url_path):
 
 def problems(root=ROOT, strict=False):
     out = []
-    pages = sorted(glob.glob(os.path.join(root, '*.html')))
+    pages = sorted(glob.glob(os.path.join(root, '*.html')) + glob.glob(os.path.join(root, 'research', '*.html')))
     scans = {p: scan(p) for p in pages}
     for p in pages:
-        name = os.path.basename(p); s = scans[p]
+        name = os.path.relpath(p, root).replace(os.sep, '/'); s = scans[p]
         if not s.title: out.append('%s: missing <title>' % name)
         if not s.description: out.append('%s: missing meta description' % name)
         if not s.canonical: out.append('%s: missing canonical' % name)
@@ -75,7 +75,10 @@ def problems(root=ROOT, strict=False):
     if os.path.isfile(sm):
         locs = re.findall(r'<loc>\s*([^<\s]+)\s*</loc>', read(sm))
         listed = set(re.sub(r'^https?://[^/]+', '', l).rstrip('/') or '/' for l in locs)
-        expected = set('/' if os.path.basename(p) == 'index.html' else '/' + os.path.basename(p)[:-5] for p in pages if os.path.basename(p) != '404.html')
+        def clean(p):
+            rel = os.path.relpath(p, root)[:-5].replace(os.sep, '/')
+            return '/' if rel == 'index' else '/' + rel
+        expected = set(clean(p) for p in pages if os.path.basename(p) != '404.html')
         for miss in sorted(expected - listed): out.append('sitemap.xml: missing page %s' % miss)
         for extra in sorted(listed - expected): out.append('sitemap.xml: unknown page %s' % extra)
     return out

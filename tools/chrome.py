@@ -15,19 +15,30 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class MissingMarker(Exception):
     pass
 
-def page_path(filename):
-    """index.html -> '/', about.html -> '/about', 404.html -> None."""
-    name = os.path.basename(filename)[:-5]
-    if name == 'index':
+def pages(root=ROOT):
+    """Sorted paths of *.html in root and in root/research/."""
+    return sorted(glob.glob(os.path.join(root, '*.html')) + glob.glob(os.path.join(root, 'research', '*.html')))
+
+def page_path(filename, root=ROOT):
+    """index.html -> '/', about.html -> '/about', research/eurozone.html -> '/research/eurozone', 404.html -> None."""
+    rel = os.path.relpath(filename, root)[:-5].replace(os.sep, '/')
+    if rel == 'index':
         return '/'
-    if name == '404':
+    if rel == '404':
         return None
-    return '/' + name
+    return '/' + rel
 
 def mark_current(nav_html, path):
+    """Mark the link for path; project pages (/research/x) also mark their parent (/research)."""
     if path is None:
         return nav_html
-    return re.sub(r'href="%s"(?! aria-current)' % re.escape(path), 'href="%s" aria-current="page"' % path, nav_html)
+    targets = [path]
+    if path.startswith('/research/'):
+        targets.append('/research')
+    out = nav_html
+    for t in targets:
+        out = re.sub(r'href="%s"(?! aria-current)' % re.escape(t), 'href="%s" aria-current="page"' % t, out)
+    return out
 
 def _block(name):
     return re.compile(r'(<!-- CHROME:%s -->)(.*?)(<!-- /CHROME:%s -->)' % (name, name), re.S)
@@ -42,15 +53,15 @@ def render(page_html, nav_html, footer_html, path):
     return out
 
 def run(root=ROOT):
-    nav = open(os.path.join(root, 'tools', 'chrome', 'nav.html'), encoding='utf-8').read()
-    foot = open(os.path.join(root, 'tools', 'chrome', 'footer.html'), encoding='utf-8').read()
+    with open(os.path.join(root, 'tools', 'chrome', 'nav.html'), encoding='utf-8') as f: nav = f.read()
+    with open(os.path.join(root, 'tools', 'chrome', 'footer.html'), encoding='utf-8') as f: foot = f.read()
     changed = []
-    for p in sorted(glob.glob(os.path.join(root, '*.html'))):
-        src = open(p, encoding='utf-8').read()
-        out = render(src, nav, foot, page_path(p))
+    for p in pages(root):
+        with open(p, encoding='utf-8') as f: src = f.read()
+        out = render(src, nav, foot, page_path(p, root))
         if out != src:
-            open(p, 'w', encoding='utf-8').write(out)
-            changed.append(os.path.basename(p))
+            with open(p, 'w', encoding='utf-8') as f: f.write(out)
+            changed.append(os.path.relpath(p, root).replace(os.sep, '/'))
     return changed
 
 if __name__ == '__main__':

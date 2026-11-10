@@ -33,11 +33,11 @@ def main():
     d.rectangle([(0, 0), (W, 8)], fill=INK)
     d.text((80, 84), 'DR MATTEO GIORDANO', font=font(SANS, 24), fill=MUTED)
     f = font(SANS_SEMI, 62); y = 140
-    for line in ('Macro-financial strategist.', 'Shipping, monetary structures,', 'and off-balance-sheet finance.'):
+    for line in ('Macro-financial economist.', 'Shipping, trade, and', 'the credit beneath them.'):
         d.text((80, y), line, font=f, fill=INK); y += 74
     d.line([(80, 392), (1120, 392)], fill=INK, width=1)
     fs = font(SERIF, 27); y = 414
-    for line in ('Sovereign risk · Eurozone monetary systems · Industrial strategy', 'Geopolitical and defence economics · Trade, freight and credit'):
+    for line in ('Freight and trade flows · Credit behind trade and freight', 'Sovereign risk · Eurozone monetary plumbing · Defence-industrial capacity'):
         d.text((80, y), line, font=fs, fill=INK); y += 40
     d.text((80, 545), 'mg-macro.vercel.app', font=font(SANS, 24), fill=MUTED)
     im.save(os.path.join(ROOT, 'img', 'og-share.png'), optimize=True)
